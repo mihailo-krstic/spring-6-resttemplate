@@ -8,6 +8,8 @@ import java.util.UUID;
 
 public interface BeerClient {
 
+    void deleteBeer(UUID id);
+
     BeerDTO updateBeer(BeerDTO beerDTO);
 
     BeerDTO createBeer(BeerDTO beerDTO);
