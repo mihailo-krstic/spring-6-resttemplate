@@ -25,7 +25,7 @@ class BeerClientImplTest {
 
         BeerDTO dto = beerDTOS.getContent().get(0);
 
-        BeerDTO byId = beerClient.getBeerById(dto.getPrice());
+        BeerDTO byId = beerClient.getBeerById(dto.getId());
 
         assertNotNull(byId);
     }

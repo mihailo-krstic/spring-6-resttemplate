@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -19,7 +20,8 @@ public class BeerClientImpl implements BeerClient {
 
     private final RestTemplateBuilder restTemplateBuilder;
 
-    public static final String GET_BEER_PATH = "/api/v1/beer";
+    private static final String GET_BEER_PATH = "/api/v1/beer";
+    private static final String GET_BEER_BY_ID_PATH = "/api/v1/beer/{id}";
 
     @Override
     public Page<BeerDTO> listBeers() {
@@ -55,7 +57,9 @@ public class BeerClientImpl implements BeerClient {
     }
 
     @Override
-    public BeerDTO getBeerById(BigDecimal price) {
-        return null;
+    public BeerDTO getBeerById(UUID id) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+
+        return restTemplate.getForObject(GET_BEER_BY_ID_PATH, BeerDTO.class, id);
     }
 }
